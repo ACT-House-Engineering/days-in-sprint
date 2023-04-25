@@ -79,10 +79,19 @@
   const humanDateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format
   
   function getDays(start, end) {
-    for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
-        arr.push(new Date(dt))
+    for(
+      // Create an array of days
+      // and give it an initial value of the start date
+      var days=[], date = new Date(start); 
+      // While the date is less than the end date
+      date <= end; 
+      // Increment by one day
+      date.setDate(date.getDate()+1)
+    ) {
+      days.push(new Date(date))
     }
-    return arr
+    
+    return days
   }
 
   function addClasses( classes, elementRef ) {

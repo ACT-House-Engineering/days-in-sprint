@@ -42,15 +42,12 @@
 <main class="inset-0 flex flex-col md:flex-row justify-around items-center h-full w-full md:space-x-6">
 
   <div class="flex flex-col justify-center items-center py-12">
-    <div>Days left in Q2</div>
+    <div class="text-base">Days left in Q2</div>
     <div 
         id="days"
         class="font-bold opacity-75"
-        style="font-size: 8rem; min-height: 25vh;"
+        style="font-size: 35vw; line-height: 1.1em; min-height: 25vh;"
     ></div>
-    <!-- <div 
-        class="spacer h-screen"
-    ></div> -->
   </div>
   
   <div>
@@ -90,7 +87,7 @@
     ) {
       days.push(new Date(date))
     }
-    
+
     return days
   }
 

@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Days in Tulsa</title>
+  <title>Days left in Q2</title>
   
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css'>
 
@@ -39,11 +39,22 @@
   class="p-0"
 >
 <!-- partial:index.partial.html -->
-<main class="inset-0 flex flex-col justify-center items-center h-full w-full">
+<main class="inset-0 flex justify-around items-center h-full w-full space-x-6">
 
-  <div 
-    class="first-day-date text-subtle text-center w-full py-8"
-  ></div>
+  <div class="flex flex-col justify-center items-center py-12">
+    <div 
+      class="first-day-date text-subtle text-center w-full py-8"
+    ></div>
+    <div>Days left in Q2</div>
+    <div 
+        id="days"
+        class="font-bold opacity-75"
+        style="font-size: 8rem; min-height: 25vh;"
+    ></div>
+    <!-- <div 
+        class="spacer h-screen"
+    ></div> -->
+  </div>
   
   <table 
     id="calendar"
@@ -53,18 +64,6 @@
       class="divide-y"
     ></tbody>
   </table>
-
-  <div class="flex flex-col justify-center items-center py-12">
-    <div>Days in Tulsa</div>
-    <div 
-        id="days"
-        class="font-bold opacity-75"
-        style="font-size: 8rem; min-height: 45vh;"
-    ></div>
-    <!-- <div 
-        class="spacer h-screen"
-    ></div> -->
-  </div>
 </main>
 
 <script>
@@ -164,14 +163,17 @@
   addClasses( divideStyles, '#calendar > tbody' )
 
   // Dom First Day in Tulsa
-  const daysStart = new Date('April 4, 2021')
+  const daysStart = new Date('June 30, 2023')
 
   // Add first day text
-  firstDayDateElement.innerHTML = `Start - ${ humanDateFormatter( daysStart ) }`
+  firstDayDateElement.innerHTML = `End - ${ humanDateFormatter( daysStart ) }`
 
   // const daysStart = new Date('September 4, 2021')
   
-  const daysInTulsa = getDays(daysStart, new Date())
+  const fromDate = new Date()
+  const toDate = daysStart
+
+  const daysInTulsa = getDays( fromDate, toDate )
 
   const totalDays = daysInTulsa.length
 
@@ -186,8 +188,7 @@
   
   
   
-  
-  addMonthHeading( daysStart )
+  addMonthHeading( fromDate )
 
   let week = addWeek()
   
@@ -236,7 +237,7 @@
     
     dayCell.innerHTML = /* html */`
       <div class="relative flex justify-center">
-        <div class="font-medium opacity-75 p-2">${ i+1 }</div>
+        <div class="font-medium opacity-75 p-2">${ totalDays - i }</div>
         <div class="absolute top-0 right-1 text-xs text-subtle">${ day.getDate() }</div>
       </div>
     `
@@ -250,7 +251,7 @@
     .then( () => {
       console.log('Today rendered. Snapping to bottom.')
 
-      window.scrollTo(0, document.body.scrollHeight)
+      // window.scrollTo(0, document.body.scrollHeight)
     })
 
 

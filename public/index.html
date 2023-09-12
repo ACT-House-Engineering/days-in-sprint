@@ -180,7 +180,7 @@
   // Get date from query string
   const dateString = urlParams.get('date')
 
-  const daysStart = new Date('June 30, 2023')
+  const daysStart = new Date( dateString )
 
   // Add first day text
   firstDayDateElement.innerHTML = `End - ${ humanDateFormatter( daysStart ) }`

@@ -175,7 +175,11 @@
 
   addClasses( divideStyles, '#calendar > tbody' )
 
-  // Dom First Day in Tulsa
+  const urlParams = new URLSearchParams(window.location.search)
+
+  // Get date from query string
+  const dateString = urlParams.get('date')
+
   const daysStart = new Date('June 30, 2023')
 
   // Add first day text
